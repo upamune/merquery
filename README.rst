@@ -5,13 +5,27 @@
 .. image:: https://badge.fury.io/py/merquery.svg
     :target: https://badge.fury.io/py/merquery
 
-.. code:: python
+Install
+-------
 
-    mq = Merquery()
-    url = mq.max_price(1000).min_price(100).status(ItemStatus.ON_SALE).shipping_payer(ShippingPayer.SELLER).condition(ItemCondition.NEW).order(ItemOrder.LIKES).keyword('秋本帆華').build()
+.. code-block:: bash
+
+    $ pip install merquery
+
+
+Usage
+-----
+
+.. code-block:: python
+
+    import merquery as mq
+    
+    q = mq.Merquery()
+    url = q.max_price(1000).min_price(100).status(mq.ItemStatus.ON_SALE).shipping_payer(mq.ShippingPayer.SELLER).condition(mq.ItemCondition.NEW).order(mq.ItemOrder.LIKES).keyword('秋本帆華').build()
     print(url)
 
     # Output: https://www.mercari.com/jp/search/?item_condition_id%5B1%5D=1&status_on_sale=1&shipping_payer_id%5B2%5D=1&keyword=%E7%A7%8B%E6%9C%AC%E5%B8%86%E8%8F%AF&sort_order=like_desc&max_price=1000&min_price=100
+
 
 Supported queries
 -----------------
