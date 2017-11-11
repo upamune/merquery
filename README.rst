@@ -1,7 +1,9 @@
 📦 Merquery: *UNOFFICIAL* Mercari(jp) item search query builder
 ==============================================================
 
-.. image:: https://badge.fury.io/py/merquery.svg     :target: https://badge.fury.io/py/merquery
+
+.. image:: https://badge.fury.io/py/merquery.svg
+    :target: https://badge.fury.io/py/merquery
 
 .. code:: python
 
