@@ -59,6 +59,10 @@ class Merquery:
 		self.__queries[condition.value] = 1
 		return self
 
+	def brand_name(self, name: str):
+		self.__queries['brand_name'] = name
+		return self
+
 	def build(self):
 		self.__validate_queries()
 		queries = self.__get_query_str()
@@ -87,7 +91,10 @@ class Merquery:
 
 		if max_price and min_price and max_price <= min_price:
 			raise Exception('max_price should be greater than min_price')
-	
+
+		brand_name = self.__get_query('brand_name')
+		if brand_name and brand_name == '':
+			raise Exception('brand_name is empty')
 
 	def __get_query(self, query: str):
 		try:

@@ -17,3 +17,11 @@ print(url)
 - item status
 - shipping payer
 - item condition
+- brand name
+
+## Unsupported queries
+
+- size
+- category
+- sub category
+
