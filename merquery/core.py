@@ -6,6 +6,11 @@ class ItemStatus(Enum):
 	ON_SALE = 'status_on_sale'
 	SOLD_OUT = 'status_trading_sold_out'
 
+class ShippingPayer(Enum):
+	ALL = 'shipping_payer_all'
+	Buyer = 'shipping_payer_id[1]'
+	Seller = 'shipping_payer_id[2]'
+
 class Merquery:
 	__queries={}
 
@@ -31,6 +36,12 @@ class Merquery:
 		if not isinstance(status, ItemStatus):
 			raise Exception('status is not member of ItemStatus')
 		self.__queries[status.value] = 1
+		return self
+
+	def shipping_payer(self, payer: ShippingPayer):
+		if not isinstance(payer, ShippingPayer):
+			raise Exception('payer is not member of ShippingPayer')
+		self.__queries[payer.value] = 1
 		return self
 
 	def build(self):
@@ -75,9 +86,4 @@ class Merquery:
 
 	def __urljoin(self, *args):
 		return '/'.join(s.strip('/') for s in args)
-
-if __name__ == '__main__':
-	mq = Merquery()
-	url = mq.max_price(1000).min_price(100).status(ItemStatus.ON_SALE).keyword('秋本帆華').build() 
-	print(url)
 
