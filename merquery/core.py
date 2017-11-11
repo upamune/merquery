@@ -20,13 +20,26 @@ class ShippingPayer(Enum):
 	BUYER = 'shipping_payer_id[1]'
 	SELLER = 'shipping_payer_id[2]'
 
-
 class ItemOrder(Enum):
 	LOWESET_PRICE = 'price_asc'
 	HIGHEST_PRICE = 'price_desc'
 	OLDEST = 'created_asc'
 	NEWEST = 'created_desc'
 	LIKES = 'like_desc'
+
+class RootCategory(Enum):
+	WOMEN = 1
+	MEN = 2
+	KIDS = 3
+	HOME  = 4 
+	VINTAGE_AND_COLLECTBLES = 5
+	BEAUTY = 6
+	ELECTRONICS = 7
+	SPORTS_AND_OUTDOORS = 8
+	HANDMADE = 9
+	TICKETS = 1027
+	CAR_AND_MOTORCYCLE = 1318
+	OTHER = 10
 
 class Merquery:
 	__queries={}
@@ -75,6 +88,12 @@ class Merquery:
 		if not isinstance(order, ItemOrder):
 			raise Exception('order is not member of ItemOrder')
 		self.__queries['sort_order'] = order.value
+		return self
+
+	def root_category(self, category: RootCategory):
+		if not isinstance(category, RootCategory):
+			raise Exception('category is not member of RootCategory')
+		self.__queries['category_root'] = category.value
 		return self
 
 	def build(self):
