@@ -1,4 +1,10 @@
 from urllib.parse import urlencode
+from enum import Enum
+
+class ItemStatus(Enum):
+	ALL = 'status_all'
+	ON_SALE = 'status_on_sale'
+	SOLD_OUT = 'status_trading_sold_out'
 
 class Merquery:
 	__queries={}
@@ -19,6 +25,12 @@ class Merquery:
 
 	def min_price(self, price: int):
 		self.__queries['min_price']=price
+		return self
+
+	def status(self, status: ItemStatus):
+		if not isinstance(status, ItemStatus):
+			raise Exception('status is not member of ItemStatus')
+		self.__queries[status.value] = 1
 		return self
 
 	def build(self):
@@ -63,4 +75,9 @@ class Merquery:
 
 	def __urljoin(self, *args):
 		return '/'.join(s.strip('/') for s in args)
+
+if __name__ == '__main__':
+	mq = Merquery()
+	url = mq.max_price(1000).min_price(100).status(ItemStatus.ON_SALE).keyword('秋本帆華').build() 
+	print(url)
 
