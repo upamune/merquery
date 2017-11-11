@@ -42,11 +42,11 @@ class Merquery:
 		return self
 
 	def max_price(self, price: int):
-		self.__queries['max_price']=price
+		self.__queries['price_max']=price
 		return self
 
 	def min_price(self, price: int):
-		self.__queries['min_price']=price
+		self.__queries['price_min']=price
 		return self
 
 	def status(self, status: ItemStatus):
@@ -89,14 +89,14 @@ class Merquery:
 		if keyword == None or keyword == "":
 			raise Exception('keyword is empty')
 
-		max_price = self.__get_query('max_price')
+		max_price = self.__get_query('price_max')
 		if max_price:
 			if not isinstance(max_price, int):
 				raise Exception('max_price is not int')
 			if max_price <= 0:
 				raise Exception('max_price should be a  positive number')
 	
-		min_price = self.__get_query('min_price')
+		min_price = self.__get_query('price_min')
 		if min_price:
 			if not isinstance(min_price, int):
 				raise Exception('min_price is not int')
