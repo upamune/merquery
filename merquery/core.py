@@ -86,7 +86,7 @@ class Merquery:
 
 	def __validate_queries(self):
 		keyword = self.__get_query('keyword')
-		if keyword == None or keyword == "":
+		if keyword is None or keyword == "":
 			raise Exception('keyword is empty')
 
 		max_price = self.__get_query('price_max')
