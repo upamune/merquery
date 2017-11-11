@@ -14,7 +14,7 @@ from setuptools import find_packages, setup, Command
 # Package meta-data.
 NAME = 'merquery'
 DESCRIPTION = 'UNOFFICIAL Mercari(jp) item search query builder'
-URL = 'https://github.com/upamune/mmerquery'
+URL = 'https://github.com/upamune/merquery'
 EMAIL = 'info@serizawa.me'
 AUTHOR = 'Yu SERIZAWA'
 
