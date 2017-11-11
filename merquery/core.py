@@ -1,6 +1,15 @@
 from urllib.parse import urlencode
 from enum import Enum
 
+class ItemCondition(Enum):
+	ALL = 'condition_all'
+	NEW = 'item_condition_id[1]'
+	LIKE_NEW = 'item_condition_id[2]'
+	GOOD = 'item_condition_id[3]'
+	FAIR = 'item_condition_id[4]'
+	POOR = 'item_condition_id[5]'
+	VERY_POOR = 'item_condition_id[6]'
+
 class ItemStatus(Enum):
 	ALL = 'status_all'
 	ON_SALE = 'status_on_sale'
@@ -42,6 +51,12 @@ class Merquery:
 		if not isinstance(payer, ShippingPayer):
 			raise Exception('payer is not member of ShippingPayer')
 		self.__queries[payer.value] = 1
+		return self
+
+	def condition(self, condition: ItemCondition):
+		if not isinstance(condition, ItemCondition):
+			raise Exception('condition is not member of ItemCondition')
+		self.__queries[condition.value] = 1
 		return self
 
 	def build(self):
