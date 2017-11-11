@@ -20,6 +20,14 @@ class ShippingPayer(Enum):
 	BUYER = 'shipping_payer_id[1]'
 	SELLER = 'shipping_payer_id[2]'
 
+
+class ItemOrder(Enum):
+	LOWESET_PRICE = 'price_asc'
+	HIGHEST_PRICE = 'price_desc'
+	OLDEST = 'created_asc'
+	NEWEST = 'created_desc'
+	LIKES = 'like_desc'
+
 class Merquery:
 	__queries={}
 
@@ -61,6 +69,12 @@ class Merquery:
 
 	def brand_name(self, name: str):
 		self.__queries['brand_name'] = name
+		return self
+
+	def order(self, order: ItemOrder):
+		if not isinstance(order, ItemOrder):
+			raise Exception('order is not member of ItemOrder')
+		self.__queries['sort_order'] = order.value
 		return self
 
 	def build(self):
