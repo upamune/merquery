@@ -17,8 +17,8 @@ class ItemStatus(Enum):
 
 class ShippingPayer(Enum):
 	ALL = 'shipping_payer_all'
-	Buyer = 'shipping_payer_id[1]'
-	Seller = 'shipping_payer_id[2]'
+	BUYER = 'shipping_payer_id[1]'
+	SELLER = 'shipping_payer_id[2]'
 
 class Merquery:
 	__queries={}
