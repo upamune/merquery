@@ -96,6 +96,12 @@ class Merquery:
 		self.__queries['category_root'] = category.value
 		return self
 
+	def page(self, page: int):
+		if not isinstance(page, int) or page <= 0:
+			raise Exception('page should be a positive integer')
+		self.__queries['page'] = page
+		return self
+
 	def build(self):
 		self.__validate_queries()
 		queries = self.__get_query_str()
